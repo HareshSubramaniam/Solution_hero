@@ -1,0 +1,35 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import path from "path";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss()
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src")
+    },
+    dedupe: ["react", "react-dom"],
+  },
+  root: __dirname,
+  build: {
+    outDir: path.resolve(__dirname, "dist/public"),
+    emptyOutDir: true,
+  },
+  server: {
+    port: 3000,
+    strictPort: true,
+    host: "0.0.0.0",
+    hmr: process.env.DISABLE_HMR !== "true",
+    watch: process.env.DISABLE_HMR === "true" ? null : {},
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      }
+    }
+  },
+});

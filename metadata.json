@@ -1,0 +1,6 @@
+{
+  "name": "CommunityHero",
+  "description": "A community issue reporting platform with AI categorization.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
